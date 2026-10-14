@@ -1,5 +1,7 @@
 # TURA-GeoSync: Tectonic Mass Transfer & Earth Rotation (LOD) Prediction
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23377460.svg)](https://doi.org/10.5281/zenodo.23377460)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1016--0065-A6CE39.svg)](https://orcid.org/0009-0000-1016-0065)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Clean](https://img.shields.io/badge/Code%20Style-Clean%20%26%20Modular-brightgreen.svg)]()
@@ -7,6 +9,35 @@
 **TURA-GeoSync** is a geophysical data science framework designed to model and predict variations in Earth's rotation velocity—measured as **Length of Day (LOD)** anomalies—driven by regional continental lithospheric mass redistribution (e.g., tectonic activity in the Himalayas and Tibetan Plateau).
 
 By integrating **NASA GRACE/GRACE-FO satellite mascon data** with **IERS Earth Orientation Parameters (EOP)**, the pipeline isolates solid Earth lithospheric signals and applies Random Forest regression with temporal lag dynamics.
+
+---
+
+## 📄 Scientific Publication & Citation
+
+This repository contains the official open-source machine learning pipeline and data processing scripts for the research paper:
+
+> **Modelling the Impact of Tectonic Mass Displacements on Global Timekeeping and UTC Synchronization Algorithms: A Case Study on the Himalayan Lithospheric Transfer**  
+> **Author:** Ahmet Tuncay Tünç ([ORCID: 0009-0000-1016-0065](https://orcid.org/0009-0000-1016-0065))  
+> **DOI:** [10.5281/zenodo.23377460](https://doi.org/10.5281/zenodo.23377460)
+
+If you use the **TURA-GeoSync** algorithmic framework, code, or findings in your research, please cite:
+
+**IEEE Format:**
+```text
+A. T. Tünç, "Modelling the Impact of Tectonic Mass Displacements on Global Timekeeping and UTC Synchronization Algorithms: A Case Study on the Himalayan Lithospheric Transfer," Zenodo, 2026, doi: 10.5281/zenodo.23377460.
+```
+
+**BibTeX:**
+```bibtex
+@article{tunc2026turageosync,
+  author       = {Tünç, Ahmet Tuncay},
+  title        = {{Modelling the Impact of Tectonic Mass Displacements on Global Timekeeping and UTC Synchronization Algorithms: A Case Study on the Himalayan Lithospheric Transfer}},
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.23377460},
+  url          = {[https://doi.org/10.5281/zenodo.23377460](https://doi.org/10.5281/zenodo.23377460)}
+}
+```
 
 ---
 
@@ -26,14 +57,14 @@ By integrating **NASA GRACE/GRACE-FO satellite mascon data** with **IERS Earth O
   - Generates temporal lag features (`Mass_Lag1`, `Mass_Lag3`, `Mass_Lag6`) and velocity (first-derivative) dynamics.
 - **Machine Learning Modeling**:
   - Chronological time-series split and Random Forest Regressor training.
-  - Dual-axis correlation visualization and automated $R^2$ / MSE evaluation metrics.
+  - Dual-axis correlation visualization and automated $R^2$ / MSE / RMSE evaluation metrics.
 
 ---
 
 ## 🏗️ Repository Architecture
 
 ```text
-earthquaqe/
+tura-geosync/
 ├── config.py             # Central project configuration & dynamic relative paths
 ├── iers_lod.py           # Ingestion module for IERS Length of Day (LOD) time series
 ├── grace_litosfer.py     # NASA GRACE NetCDF lazy loading & lithospheric spatial masking
@@ -55,7 +86,7 @@ Ensure you have **Python 3.9+** installed on your system.
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/your-username/tura-geosync.git
+git clone [https://github.com/ahmewt5-beep/tura-geosync.git](https://github.com/ahmewt5-beep/tura-geosync.git)
 cd tura-geosync
 ```
 
@@ -92,7 +123,8 @@ Starting TURA-GeoSync AI Pipeline (Random Forest)
 --------------------------------------------------
 RANDOM FOREST MODEL PERFORMANCE EVALUATION
 R-squared Score (Variance Explained): 0.5635
-Mean Squared Error (MSE):           1.213909e-03
+Mean Squared Error (MSE):            1.213909e-03
+Root Mean Squared Error (RMSE):      0.0348 ms (34.8 µs)
 --------------------------------------------------
 ```
 
@@ -155,10 +187,10 @@ RF_N_ESTIMATORS = 100
 ## 📜 Data Sources & Acknowledgments
 
 - **IERS (International Earth Rotation and Reference Systems Service)**: Paris Observatory ([hpiers.obspm.fr](https://hpiers.obspm.fr/iers/eop/eopc04/)) for EOP C04 time-series products.
-- **NASA JPL (Jet Propulsion Laboratory)**: GRACE/GRACE-FO Tellus Mascon RL06.3 land gravity anomaly products.
+- **NASA JPL (Jet Propulsion Laboratory)**: GRACE/GRACE-FO Tellus Mascon CRI land gravity anomaly products.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the `LICENSE` file for details.
